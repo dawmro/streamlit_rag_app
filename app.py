@@ -72,6 +72,14 @@ def add_to_vector_collection(all_splits: list[Document], file_name: str):
 
 
 
+def query_collection(prompt: str, n_results: int = 10):
+   
+    collection = get_vector_collection()
+    results = collection.query(query_texts=[prompt], n_results=n_results)
+    return results
+
+
+
 if __name__ == "__main__":
 
     # sidebar for document upload
@@ -95,6 +103,16 @@ if __name__ == "__main__":
             )
             all_splits = process_document(uploaded_file)
             add_to_vector_collection(all_splits, normalize_uploaded_file_name)
+
+    st.header("RAG Question")
+    prompt = st.text_area("Ask a question related to document:")
+    ask = st.button(
+        "Ask",
+    )
+
+    if ask and prompt:
+        results = query_collection(prompt)
+        st.write(results)
 
 
     
