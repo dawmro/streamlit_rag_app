@@ -24,7 +24,7 @@ pip install -r .\requirements.txt
 
 ## Run:
 ``` sh
-.\app.py
+streamlit run app.py
 ```
 
 ## Usage:
